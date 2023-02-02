@@ -116,10 +116,11 @@ snapshotButton.onclick = function() {
   document.getElementById("result5").innerHTML = " ";
   
  
-  var sendBlob = new FormData();
-  sendBlob.append("image", createBlob(canvas.toDataURL()));
+  const sendBlob = createBlob(canvas.toDataURL());
+  var data = new FormData();
+  data.append("image", sendBlob);
   
-  xhr.send(sendBlob);
+  xhr.send(data);
   
   xhr.onreadystatechange = function() { 
     // If the request completed, parse the results
