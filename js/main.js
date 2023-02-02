@@ -87,21 +87,18 @@ snapshotButton.onclick = function() {
   canvas.height = videoElement.videoHeight;
   canvas.getContext('2d').drawImage(videoElement, 0, 0, canvas.width, canvas.height);
 
- 
+  // Prepare to send image to backend
   var url = "https://qntm-apim.azure-api.net/KnowYourWeed/classifyall"
   var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
-  
-  xhr.open("POST", url);
- 
-  xhr.setRequestHeader("Ocp-Apim-Subscription-Key", "39ee06e8c47940f78abb8fee0036796a");
-  
 
   xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-        console.log(xhr.status);
-        console.log(xhr.responseText);
-    }};
+  if (xhr.readyState === 4) {
+      console.log(xhr.status);
+      console.log(xhr.responseText);
+  }};
+  
+  xhr.open("POST", url);
+  xhr.setRequestHeader("Ocp-Apim-Subscription-Key", "39ee06e8c47940f78abb8fee0036796a");
 
   document.getElementById("result1").innerHTML = " ";
   document.getElementById("probability").innerHTML = '<p>Doing some magic. . .</p>';
