@@ -117,7 +117,7 @@ snapshotButton.onclick = function() {
   
  
   var sendBlob = new FormData();
-  sendBlob.append("image", fileInput.files[0], createBlob(canvas.toDataURL()));
+  sendBlob.append("image", createBlob(canvas.toDataURL()));
   
   xhr.send(sendBlob);
   
