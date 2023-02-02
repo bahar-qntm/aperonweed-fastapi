@@ -116,7 +116,7 @@ snapshotButton.onclick = function() {
   
   xhr.onreadystatechange = function() { 
     // If the request completed, parse the results
-    let response = JSON.parse(xhr.responseText);
+    var response = JSON.parse(xhr.responseText);
     if (xhr.readyState == 4){
       if (xhr.status == 200) {
         document.getElementById("probability").innerHTML = '<b>Color - Probability</b>';
