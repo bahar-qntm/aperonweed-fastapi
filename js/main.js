@@ -90,7 +90,7 @@ snapshotButton.onclick = function() {
   //var url = "https://aperonncus-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/1fc5c98b-7c0d-4fd3-b41f-4356f78310c9/classify/iterations/Iteration1/image"
   var url = "https://qntm-apim.azure-api.net/KnowYourWeed/classifyall"
   var xhr = new XMLHttpRequest();
-  xhr.withCredentials = true;
+  //xhr.withCredentials = true;
   
   xhr.open("POST", url);
   xhr.setRequestHeader("Content-Type", "multipart/form-data");
