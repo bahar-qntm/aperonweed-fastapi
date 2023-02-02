@@ -87,14 +87,17 @@ snapshotButton.onclick = function() {
   canvas.height = videoElement.videoHeight;
   canvas.getContext('2d').drawImage(videoElement, 0, 0, canvas.width, canvas.height);
 
-  var url = "https://aperonncus-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/1fc5c98b-7c0d-4fd3-b41f-4356f78310c9/classify/iterations/Iteration1/image"
-  //var url = "https://qntm-apim.azure-api.net/KnowYourWeed/classify"
-  //var url = "https://qntm-apim.azure-api.net/KnowYourWeed-Backup/classify"
+  //var url = "https://aperonncus-prediction.cognitiveservices.azure.com/customvision/v3.0/Prediction/1fc5c98b-7c0d-4fd3-b41f-4356f78310c9/classify/iterations/Iteration1/image"
+  var url = "https://qntm-apim.azure-api.net/KnowYourWeed/classifyall"
   var xhr = new XMLHttpRequest();
+  xhr.withCredentials = true;
+  
   xhr.open("POST", url);
-
-  xhr.setRequestHeader("Prediction-Key", "8b70c86275ae4765902cdc5a25e84435");
-  xhr.setRequestHeader("Content-Type", "application/octet-stream");
+  xhr.setRequestHeader("Content-Type", "multipart/form-data");
+  xhr.setRequestHeader("Ocp-Apim-Subscription-Key", "39ee06e8c47940f78abb8fee0036796a");
+  
+  //xhr.setRequestHeader("Prediction-Key", "8b70c86275ae4765902cdc5a25e84435");
+  //xhr.setRequestHeader("Content-Type", "application/octet-stream");
   //xhr.setRequestHeader("Ocp-Apim-Subscription-Key", "39ee06e8c47940f78abb8fee0036796a");
   //xhr.setRequestHeader("Content-Type", "multipart/form-data");
   //xhr.setRequestHeader("Content-Length", "0");
@@ -113,7 +116,9 @@ snapshotButton.onclick = function() {
   document.getElementById("result5").innerHTML = " ";
   
  
-  const sendBlob = createBlob(canvas.toDataURL());
+  var sendBlob = new FormData();
+  sendBlob.append("image", fileInput.files[0], createBlob(canvas.toDataURL()));
+  
   xhr.send(sendBlob);
   
   xhr.onreadystatechange = function() { 
